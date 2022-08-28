@@ -1,0 +1,24 @@
+{
+  "name": "apirest-pi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "apiRest.js",
+  "scripts": {
+    "script": "nodemon apiRest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euFilpeSilva/apiRest-PI.git"
+  },
+  "keywords": [],
+  "author": "Filipe sousa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euFilpeSilva/apiRest-PI/issues"
+  },
+  "homepage": "https://github.com/euFilpeSilva/apiRest-PI#readme",
+  "devDependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
