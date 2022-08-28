@@ -4,7 +4,7 @@
   "description": "",
   "main": "apiRest.js",
   "scripts": {
-    "script": "nodemon apiRest.js"
+    "start": "nodemon apiRest.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,12 @@
   "devDependencies": {
     "express": "^4.18.1",
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "create-error": "^0.3.1",
+    "file-system": "^2.2.2",
+    "fs": "^0.0.1-security",
+    "http-errors": "^2.0.0"
   }
 }

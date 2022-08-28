@@ -1,0 +1,26 @@
+    [
+        {
+            "id": 1,
+            "nome": "Notebook",
+            "marca": "Samsung",
+            "preco": 1280.99
+        },
+        {
+            "id": 2,
+            "nome": "TV",
+            "marca": "Samsung",
+            "preco": 2000
+        },
+        {
+            "id": 3,
+            "nome": "Celular",
+            "marca": "xiaomi",
+            "preco":3000
+        },
+        {
+            "id": 4,
+            "nome": "microondas",
+            "marca": "philco",
+            "preco": 600
+        }  
+    ]

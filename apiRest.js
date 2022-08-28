@@ -1,4 +1,19 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const fs = require('fs')
+const app = express()
 
-app.use(express.json())
+let meusProdutos = fs.readFileSync('produtos.json')
+let produtos = JSON.parse(meusProdutos)
+
+app.get('/', (req,res,next) => {
+    res.send("teste")
+    next(error => console.error(error))
+})
+
+app.get('/produtos', (req, res, next) => {
+    res.json(produtos)
+})
+
+app.listen(3000, () => {
+    console.log("rodando");
+})
