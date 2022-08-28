@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 
 let meusProdutos = fs.readFileSync('produtos.json')
 let produtos = JSON.parse(meusProdutos)
+ 
 
 app.get('/', (req,res,next) => {
     res.send("teste")
@@ -18,6 +19,19 @@ app.get('/', (req,res,next) => {
 app.get('/produtos', (req, res, next) => {
     res.json(produtos)
 })
+
+
+// rota pra consultar um unico livro
+app.get('/produtos/:id', (req, res) => {
+    const id = Number(req.params.id)
+     for(let item of produtos){
+        if(item.id === id){  
+           res.json(item);
+            return;
+        }
+    }
+    res.status(404).send('Produto não encontrado!')
+});
 
 // rota pra cadastrar produtos
 app.post('/novosProdutos', (req, res, next) => {
@@ -35,6 +49,7 @@ app.post('/novosProdutos', (req, res, next) => {
         res.send('Produto cadastrado com sucesso')
     }
 );
+
 
 app.listen(3000, () => {
     console.log("rodando");
