@@ -20,12 +20,11 @@ app.get('/produtos', (req, res, next) => {
     res.json(produtos)
 })
 
-
 // rota pra consultar um unico livro
 app.get('/produtos/:id', (req, res) => {
-    const id = Number(req.params.id)
+    const id = req.params.id
      for(let item of produtos){
-        if(item.id === id){  
+        if(item.id == id){  
            res.json(item);
             return;
         }
@@ -49,6 +48,18 @@ app.post('/novosProdutos', (req, res, next) => {
         res.send('Produto cadastrado com sucesso')
     }
 );
+
+app.delete('/produtoo/:id',(req,res)=> {
+    const id = req.params.id
+    for(let i=0; i < produtos.length; i++) {
+        if(produtos[i].id == id){
+            produtos.splice(i,1)
+            res.send('Dados apagados com sucesso!')
+            return
+    }
+  }
+  res.status(404).send('Produto não encontrado!')
+});
 
 
 app.listen(3000, () => {
