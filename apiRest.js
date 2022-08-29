@@ -6,7 +6,7 @@ const express = require('express')
 //   isso em um objeto dentro do objeto de requisição (req): req. body.
 const bodyParser = require('body-parser')
 
-// fs é utilizado pra acessar o caminho raiz dos meus diretorios
+// fs é utilizado pra acessar o caminho raiz dos meus diretorios, ler, criar, editar, deletar arquivos.
 const fs = require('fs')
 const app = express()
 
