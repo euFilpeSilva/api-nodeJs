@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 
 // fs é utilizado pra acessar o caminho raiz dos meus diretorios, ler, criar, editar, deletar arquivos.
 const fs = require('fs')
+const { response } = require('express')
 const app = express()
 
 
@@ -54,6 +55,7 @@ app.post('/novosProdutos', (req, res) => {
         fs.writeFile('produtos.json', jsonList, 'utf8', () => {})
         res.send('Produto cadastrado com sucesso')
 
+        // ALTERNATIVA 
 // const {nome, marca, preco} = req.body;
 // const produto = {
 //     id: uuid(),
@@ -83,10 +85,21 @@ app.delete('/produto/:id',(req,res)=> {
 });
 
 // renderizar em uma porta localhost
-app.put('/atualizar/id', (req,res)=> {
-    const {id} = req.params; 
-})
+app.put('/atualizar/:id', (req,res)=> {
+    const id = Number(req.params.id); 
+    let nome = req.body.nome;
+    let marca = req.body.marca;
+    let preco = req.body.preco;
 
+    let produto = produtos.filter(value => value.id == id)
+
+    produto[0].nome = nome
+    produto[0].marca = marca
+    produto[0].preco = preco
+
+    res.json(produto[0])
+    
+})
 
 app.listen(3000, () => {
     console.log("rodando");
