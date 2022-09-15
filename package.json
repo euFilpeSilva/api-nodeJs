@@ -4,7 +4,7 @@
   "description": "",
   "main": "apiRest.js",
   "scripts": {
-    "start": "nodemon apiRest.js"
+    "start": "nodemon ./bin/server.js"
   },
   "repository": {
     "type": "git",
