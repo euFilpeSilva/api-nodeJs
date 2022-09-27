@@ -1,0 +1,291 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Produtos Eletronicos",
+        "description": "API Rest de e-commerce (produtos eletronicos)",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths": {
+        "/produtos": {
+            "descrption": "Produtos Eletronicos",
+            "get": {
+                "description": "Lista de produtos",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/produtos"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/produtosPorId/{id}": {
+            "descrption": "Lista produto por id",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "description": "Lista de produto",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/produtosPorId"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/criarProduto": {
+            "descrption": "Cadastra novo produto",
+            "post": {
+                "description": "Cadastra um produto",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "Produto": {
+                                        "type": "object",
+                                        "properties": {
+                                            "codigo": {
+                                            "type": "string",
+                                            "example": "Notebook"
+                                            },
+                                            "preco": {
+                                                "type": "number",
+                                                "example": "1235.50"
+                                            }
+                                        }
+                                    }  
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Produto criado",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/atualizaProduto/{id}": {
+            "descrption": "Atualizar produto pelo Id",
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "Produto": {
+                                        "type": "object",
+                                        "properties": {
+                                            "codigo": {
+                                                "type": "string",
+                                                "example": "Notebook"
+                                            },
+                                            "preco": {
+                                                "type": "number",
+                                                "example": "1235.50"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Atualiza produto",
+                "responses": {
+                    "204": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/atualizaProdutoPorId"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/produtos/{id}": {
+            "descrption": "Deletar produtos",
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "description": "Deletar",
+                "responses": {
+                    "202": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteProduto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "produtos": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "codigo": {
+                        "type": "number",
+                        "example": "12365"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    }
+                },
+                "price": {
+                    "type": "float",
+                    "example": "3900"
+                }
+            },
+            "produtosPorId": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "codigo": {
+                        "type": "number",
+                        "example": "12365"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    }
+                },
+                "price": {
+                    "type": "float",
+                    "example": "3900"
+                }
+            },
+            "novoProduto": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "codigo": {
+                        "type": "number",
+                        "example": "12365"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    }
+                },
+                "price": {
+                    "type": "float",
+                    "example": "3900"
+                }
+            },
+            "atualizaProdutoPorId": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "codigo": {
+                        "type": "number",
+                        "example": "12365"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    }
+                },
+                "price": {
+                    "type": "float",
+                    "example": "3900"
+                }
+            },
+            "deleteProduto": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "codigo": {
+                        "type": "number",
+                        "example": "12365"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    }
+                },
+                "price": {
+                    "type": "float",
+                    "example": "3900"
+                }
+            }
+        }
+    }
+}
