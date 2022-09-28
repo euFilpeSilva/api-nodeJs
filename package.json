@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/euFilpeSilva/apiRest-PI#readme",
   "devDependencies": {
+    "@types/swagger-ui-express": "^4.1.3",
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "uuid": "^9.0.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -27,6 +29,8 @@
     "file-system": "^2.2.2",
     "fs": "^0.0.1-security",
     "http-errors": "^2.0.0",
+    "swagger-json": "^2.0.0",
+    "swagger-ui-express": "^4.5.0",
     "uuidv4": "^6.2.13"
   }
 }

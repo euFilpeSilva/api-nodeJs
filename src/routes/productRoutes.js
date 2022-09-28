@@ -8,15 +8,15 @@ const routes = express.Router();
 routes.get("/produtos", productControllers.listar);
 
 // Consultar um unico produto
-routes.get("/produtos/:id", productControllers.listarPorId);
+routes.get("/produtosPorId/:id", productControllers.listarPorId);
 
 // Cadastrar produtos
-routes.post("/novoProduto", productControllers.criar);
+routes.post("/criarProduto", productControllers.criar);
 
 // Deletar produtos
-routes.delete("/produtos/:id", productControllers.remover);
+routes.delete("/deeteProduto/:id", productControllers.remover);
 
 // Atualizar produto
-routes.put("/produtos/:id", productControllers.atualizar);
+routes.put("/atualizaProduto/:id", productControllers.atualizar);
 
 module.exports = routes;

@@ -1,12 +1,14 @@
+const { v4: uuidv4 } = require('uuid');
+uuidv4();
+
 var produtos = [
   {
-    id: 1,
+    id: uuidv4(),
     name: "micro placas",
     marca: "digital",
     preco: 9000,
   },
 ];
-
 function listar (req, res) {
   res.json(produtos);
 }
@@ -22,18 +24,17 @@ function listarPorId (req, res) {
   }
   res.status(404).send("Produto não encontrado!");
 }
-
 function criar (req, res) {
   const { id, name, marca, preco } = req.body;
 
   produtos.push({
-    id,
+    id : uuidv4(),
     name,
     marca,
     preco,
   });
 
-  res.send("Produto cadastrado com sucesso!");
+  res.status(201).json(produtos);
 }
 
 function atualizar(req, res) {
