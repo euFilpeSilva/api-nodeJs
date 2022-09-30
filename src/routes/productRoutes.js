@@ -14,7 +14,7 @@ routes.get("/produtosPorId/:id", productControllers.listarPorId);
 routes.post("/criarProduto", productControllers.criar);
 
 // Deletar produtos
-routes.delete("/deeteProduto/:id", productControllers.remover);
+routes.delete("/deleteProduto/:id", productControllers.remover);
 
 // Atualizar produto
 routes.put("/atualizaProduto/:id", productControllers.atualizar);

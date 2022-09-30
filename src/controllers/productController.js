@@ -3,7 +3,7 @@ uuidv4();
 
 var produtos = [
   {
-    id: uuidv4(),
+    id : 1,
     name: "micro placas",
     marca: "digital",
     preco: 9000,
@@ -28,7 +28,7 @@ function criar (req, res) {
   const { id, name, marca, preco } = req.body;
 
   produtos.push({
-    id : uuidv4(),
+    id : produtos[produtos.length - 1].id+1, //incremento topp
     name,
     marca,
     preco,
@@ -38,7 +38,14 @@ function criar (req, res) {
 }
 
 function atualizar(req, res) {
-  const localizarProduct = produtos.find(produto => produto.id === Number(req.params.id));
+      const localizaId =  produtos.find(prod => prod.id === req.body.id);
+
+    if(!localizaId) {
+        return res.status(404).json({ message: "Not registred prod."});
+    }
+    localizaId.name = req.body.name;
+    localizaId.idade = req.body.idade;
+    res.status(204).end();
 };
 
 

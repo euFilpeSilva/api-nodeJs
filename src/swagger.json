@@ -30,22 +30,19 @@
             }
         },
         "/produtosPorId/{id}": {
-            "descrption": "Lista produto por id",
             "get": {
+                "descrption": "Lista produto por id",
                 "parameters": [
                     {
-                        "id": "id",
-                        "name": "name",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "number"
+                        "name": "id",
+                           "in": "path",
+                           "description": "parametro id",
+                           "required": true
                         }
-                    }
                 ],
-                "description": "Lista de produto",
                 "responses": {
                     "200": {
+                        
                         "description": "Sucesso",
                         "content": {
                             "application/json": {
@@ -66,7 +63,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/produtos"
+                                "$ref": "#/components/schemas/novoProduto"
                             }
                         }
                     }
@@ -79,42 +76,47 @@
                 }
             }
         },
-    "/atualizaProduto/{id}": {
-        "descrption": "Atualizar produto pelo Id",
-        "put": {
-            "descrption": "Atualizar produto pelo Id",
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "Produto": {
-                                    "type": "object",
-                                    "properties": {
-                                        "codigo": {
-                                            "type": "string",
-                                            "example": "Notebook"
-                                        },
-                                        "preco": {
-                                            "type": "number",
-                                            "example": "1235.50"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "description": "Atualiza produto",
-            "responses": {
-                "204": {
-                    "description": "Sucesso",
+        "/atualizaProduto/{id}": {
+            "put": {
+                "summary": "Atualizar produto pelo Id",
+                "descrption": "Atualizar produto pelo Id",
+     
+                "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/atualizarProduto"
+                                "$ref": "#/components/schemas/atualizaProdutoPorId"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Sucesso",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/deleteProduto/{id}": {
+            "delete": {
+                "summary": "Deletar produtos",
+                "description": "Deletar",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Produto deletado com Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteProduto"
+                                }
                             }
                         }
                     }
@@ -122,157 +124,107 @@
             }
         }
     },
-    "/deleteProduto/{id}": {
-        "descrption": "Deletar produtos",
-        "delete": {
-            "parameters": [
-                {
-                    "id": "id",
-                    "in": "path",
-                    "required": true,
-                    "schema": {
+    "components": {
+        "schemas": {
+            "produtos": {
+                "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Noteboock Dell G15"
+                },
+                "marca": {
+                    "type": "string",
+                    "example": "samsung"
+                },
+                "price": {
+                    "type": "number",
+                    "example": "3900"
+                }
+            }
+            },
+            "produtosPorId": {
+                "type":"object",
+               "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Noteboock Dell G15"
+                },
+                "marca": {
+                    "type": "string",
+                    "example": "samsung"
+                },
+                "price": {
+                    "type": "number",
+                    "example": "3900"
+                }
+            }
+            },
+            "atualizaProdutoPorId": {
+                    "properties": {
+                    "id": {
                         "type": "number"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "3900"
+                }
+                }
+            },
+
+            "novoProduto": {
+                "id": {
+                    "type": "number"
+                },
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Noteboock Dell G15"
+                    },
+                    "marca": {
+                        "type": "string",
+                        "example": "samsung"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "3900"
                     }
                 }
-            ],
-            "description": "Deletar",
-            "responses": {
-                "202": {
-                    "description": "Sucesso",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/deleteProduto"
-                            }
-                        }
-                    }
+            },
+            "deleteProduto": {
+                "type": "object",
+               "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Noteboock Dell G15"
+                },
+                "marca": {
+                    "type": "string",
+                    "example": "samsung"
+                },
+                "price": {
+                    "type": "number",
+                    "example": "3900"
                 }
+            }
             }
         }
     }
-},
-"components": {
-    "schemas": {
-        "produtos": {
-            "id": {
-                "type": "uuidv4()"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "Noteboock Dell G15"
-                },
-                "codigo": {
-                    "type": "number",
-                    "example": "12365"
-                },
-                "marca": {
-                    "type": "string",
-                    "example": "samsung"
-                }
-            },
-            "price": {
-                "type": "float",
-                "example": "3900"
-            }
-        },
-        "produtosPorId": {
-            "id": {
-                "type": "number"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "Noteboock Dell G15"
-                },
-                "codigo": {
-                    "type": "number",
-                    "example": "12365"
-                },
-                "marca": {
-                    "type": "string",
-                    "example": "samsung"
-                }
-            },
-            "price": {
-                "type": "float",
-                "example": "3900"
-            }
-        },
-        "novoProduto": {
-            "id": {
-                "type": "number"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "Noteboock Dell G15"
-                },
-                "codigo": {
-                    "type": "number",
-                    "example": "12365"
-                },
-                "marca": {
-                    "type": "string",
-                    "example": "samsung"
-                }
-            },
-            "price": {
-                "type": "float",
-                "example": "3900"
-            }
-        },
-        "atualizaProdutoPorId": {
-            "id": {
-                "type": "number"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "Noteboock Dell G15"
-                },
-                "codigo": {
-                    "type": "number",
-                    "example": "12365"
-                },
-                "marca": {
-                    "type": "string",
-                    "example": "samsung"
-                }
-            },
-            "price": {
-                "type": "float",
-                "example": "3900"
-            }
-        },
-        "deleteProduto": {
-            "id": {
-                "type": "number"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "example": "Noteboock Dell G15"
-                },
-                "codigo": {
-                    "type": "number",
-                    "example": "12365"
-                },
-                "marca": {
-                    "type": "string",
-                    "example": "samsung"
-                }
-            },
-            "price": {
-                "type": "float",
-                "example": "3900"
-            }
-        }
-    }
-}
 }
