@@ -29,7 +29,7 @@
                 }
             }
         },
-        "/produtosPorId/{id}": {
+        "/produtos/{id}": {
             "get": {
                 "descrption": "Lista produto por id",
                 "parameters": [
@@ -45,9 +45,9 @@
                         
                         "description": "Sucesso",
                         "content": {
-                            "application/json": {
+                            "app/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/produtosPorId"
+                                    "$ref": "#/components/schemas/produtos"
                                 }
                             }
                         }
@@ -55,7 +55,7 @@
                 }
             }
         },
-        "/criarProduto": {
+        "/produto": {
             "post": {
                 "summary": "Cadastra um produto",
                 "descrption": "Cadastra novo produto",
@@ -63,7 +63,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/novoProduto"
+                                "$ref": "#/components/schemas/produto"
                             }
                         }
                     }
@@ -85,7 +85,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/atualizaProdutoPorId"
+                                "$ref": "#/components/schemas/produto"
                             }
                         }
                     }
@@ -115,7 +115,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/deleteProduto"
+                                    "$ref": "#/components/schemas/produto"
                                 }
                             }
                         }
