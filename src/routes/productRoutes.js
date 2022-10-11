@@ -11,7 +11,7 @@ routes.get("/produtos", productControllers.listar);
 routes.get("/produto/:id", productControllers.listarPorId);
 
 // Cadastrar produtos
-routes.post("/criarProduto", productControllers.criar);
+routes.post("/produto", productControllers.criar);
 
 // Deletar produtos
 routes.delete("/produto/:id", productControllers.remover);
