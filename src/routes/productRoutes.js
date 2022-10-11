@@ -17,6 +17,6 @@ routes.post("/produto", productControllers.criar);
 routes.delete("/produto/:id", productControllers.remover);
 
 // Atualizar produto
-routes.put("produto/:id", productControllers.atualizar);
+routes.put("/produto/:id", productControllers.atualizar);
 
 module.exports = routes;

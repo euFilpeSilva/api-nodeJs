@@ -38,16 +38,18 @@ function criar (req, res) {
 }
 
 function atualizar(req, res) {
-      const localizaId =  produtos.find(prod => prod.id === req.body.id);
+     const produtoLocalizado = produtos.find(produtos => produtos.id === Number(req.params.id));
 
-    if(!localizaId) {
-        return res.status(404).json({ message: "Not registred prod."});
+    if (!produtoLocalizado) {
+        return res.status(404).json({ msg: `produtos nao localizado` });
     }
-    localizaId.name = req.body.name;
-    localizaId.idade = req.body.idade;
-    res.status(204).end();
-};
+    
+    produtoLocalizado.name = req.body.name;
+    produtoLocalizado.marca = req.body.marca;
+    produtoLocalizado.price = req.body.price;
 
+    res.status(204).end();
+}
 
 function remover(req, res) {
   const { id } = req.params;
