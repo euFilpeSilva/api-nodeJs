@@ -7,11 +7,11 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000"
+            "url": "http://localhost:3000/api-docs"
         }
     ],
     "paths": {
-        "/produtos": {
+        "/produtosList": {
             "get": {
                 "descrption": "Produtos Eletronicos",
                 "summary": "Lista de produtos",
@@ -29,7 +29,8 @@
                 }
             }
         },
-        "/produto/{id}": {
+
+        "/produtos/{id}": {
             "get": {
                 "descrption": "Lista produto por id",
                 "parameters": [
@@ -54,7 +55,8 @@
                 }
             }
         },
-        "/produto": {
+
+        "/produtos": {
             "post": {
                 "summary": "Cadastra um produto",
                 "descrption": "Cadastra novo produto",
@@ -62,7 +64,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/novoProduto"
+                                "$ref": "#/components/schemas/produtos"
                             }
                         }
                     }
@@ -75,6 +77,7 @@
                 }
             }
         },
+
         "/atualizaProduto/{id}": {
             "put": {
                 "summary": "Atualizar produto pelo Id",
@@ -96,7 +99,8 @@
                 }
             }
         },
-        "/produtoDel/{id}": {
+
+        "/produtosDel/{id}": {
             "delete": {
                 "summary": "Deletar produtos",
                 "description": "Deletar",
