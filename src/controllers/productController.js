@@ -1,70 +1,69 @@
+const { ObjectID } = require('bson');
+const { PromiseProvider } = require('mongoose');
+const produto = require("../models/productsModel");
+
+
 const { v4: uuidv4 } = require('uuid');
 uuidv4();
 
-var produtos = [
-  {
-    id : 1,
-    name: "micro placas",
-    marca: "digital",
-    preco: 9000,
-  },
-];
-function listar (req, res) {
-  res.json(produtos);
+
+async  function listar(req,res){
+    await produto.find({})
+    .then(produtos => {return res.json(produtos)})
+    .catch( error => {return res.status(500).json(error)});
+        
+};
+
+async function listarPorId(req,res){
+    await produto.findOne({_id: ObjectID(req.params.id)})
+    .then(produto => {
+        if(produto) return res.json(produto);
+        else return res.status(404).json('Produto Não Localizado');
+    })
+    .catch(error => {return res.status(500).json(error) });
+};
+
+
+async function criar (req, res){
+    const produto =  new produto(req.body);
+    await produto.save()
+    .then (doc => {
+        return res.status(201).json(doc);
+    })
+    .catch(error => {
+        const msgErro = {};
+        Object.values(error.errors).forEach(({properties}) => {
+            msgErro[properties.path] = properties.message;
+        });
+        return res.status(422).json(msgErro);
+})
 }
 
-function listarPorId (req, res) {
-  const { id } = req.params;
+async function atualizar(req,res){
 
-  for (let item of produtos) {
-    if (item.id == id) {
-      res.json(item);
-      return;
-    }
-  }
-  res.status(404).send("Produto não encontrado!");
-}
-function criar (req, res) {
-  const { id, name, marca, preco } = req.body;
+    await produto.findOneAndUpdate({_id:ObjectID(req.params.id)},req.body, {runValidators : true})
+    .then(produto => {
+        if(produto) {return res.status(204).end()}
+        else{ return res.status(404).json("produto não localizado")};
+    })
+    .catch(error => {
+        const msgErro = {};
+        Object.values(erro.errors).forEach(({properties}) => {
+            msgErro[properties.path] = properties.message;
+        });
+        return res.status(422).json(msgErro);
+    });
 
-  produtos.push({
-    id : produtos[produtos.length - 1].id+1, //incremento topp
-    name,
-    marca,
-    preco,
-  });
+};
 
-  res.status(201).json(produtos);
-}
-
-function atualizar(req, res) {
-     const produtoLocalizado = produtos.find(produtos => produtos.id === Number(req.params.id));
-
-    if (!produtoLocalizado) {
-        return res.status(404).json({ msg: `produtos nao localizado` });
-    }
-    
-    produtoLocalizado.name = req.body.name;
-    produtoLocalizado.marca = req.body.marca;
-    produtoLocalizado.price = req.body.price;
-
-    res.status(204).end();
-}
-
-function remover(req, res) {
-  const { id } = req.params;
-
-  for (let i = 0; i < produtos.length; i++) {
-    if (produtos[i].id == id) {
-      produtos.splice(i, 1);
-      res.status(200).send("Dados apagados com sucesso!");
-      let newProduct = produtos;
-      return newProduct;
-    }
-  }
-
-  res.status(404).send("Produto não existe no banco!");
-}
+async function remover(req,res){
+    await produto.findOneAndDelete({_id: ObjectID(req.params.id) })
+    .then(produto => {
+        if(produto) return res.status(204).end();
+        else return res.status(404).json('produto Não localizado'); 
+    })
+    .catch (error => {return res.status(500).json (error) });
+};
 
 module.exports = {
     listar,
@@ -73,3 +72,5 @@ module.exports = {
     atualizar,
     remover
 }
+
+module.exports = {listar, listarPorId, criar, atualizar, remover};
