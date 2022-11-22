@@ -11,7 +11,7 @@
         }
     ],
     "paths": {
-        "/produtosList": {
+        "/produtos": {
             "get": {
                 "descrption": "Produtos Eletronicos",
                 "summary": "Lista de produtos",
@@ -21,16 +21,19 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                "type": "array",
+                                "items":{
                                     "$ref": "#/components/schemas/produtos"
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            
         },
-
-        "/produtos/{id}": {
+        "/produtosPorId/{id}": {
             "get": {
                 "descrption": "Lista produto por id",
                 "parameters": [
@@ -56,7 +59,7 @@
             }
         },
 
-        "/produtos": {
+        "/criar": {
             "post": {
                 "summary": "Cadastra um produto",
                 "descrption": "Cadastra novo produto",
@@ -78,10 +81,11 @@
             }
         },
 
-        "/atualizaProduto/{id}": {
+        "/editar/{id}": {
             "put": {
                 "summary": "Atualizar produto pelo Id",
                 "descrption": "Atualizar produto pelo Id",
+
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -100,7 +104,7 @@
             }
         },
 
-        "/produtosDel/{id}": {
+        "/remover/{id}": {
             "delete": {
                 "summary": "Deletar produtos",
                 "description": "Deletar",
@@ -114,13 +118,9 @@
                 "responses": {
                     "204": {
                         "description": "Produto deletado com Sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/produtos"
-                                }
+                        "404": {
+                                "description": "Não Encontrado"
                             }
-                        }
                     }
                 }
             }
@@ -129,9 +129,11 @@
     "components": {
         "schemas": {
             "produtos": {
+                "type": "object",
                 "properties": {
                     "id": {
-                        "type": "number"
+                        "type": "number",
+                        "example": 2
                     },
                     "name": {
                         "type": "string",
