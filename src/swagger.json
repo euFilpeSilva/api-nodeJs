@@ -7,14 +7,13 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/api-docs"
+            "url": "http://localhost:3000"
         }
     ],
     "paths": {
-        "/produtos": {
+        "/produtos/": {
             "get": {
                 "descrption": "Produtos Eletronicos",
-                "summary": "Lista de produtos",
                 "responses": {
                     "200": {
                         "description": "Sucesso",
@@ -33,7 +32,7 @@
             }
             
         },
-        "/produtosPorId/{id}": {
+        "/produtos/listPorId/{id}": {
             "get": {
                 "descrption": "Lista produto por id",
                 "parameters": [
@@ -59,9 +58,8 @@
             }
         },
 
-        "/criar": {
+        "/produtos": {
             "post": {
-                "summary": "Cadastra um produto",
                 "descrption": "Cadastra novo produto",
                 "requestBody": {
                     "content": {
@@ -76,16 +74,23 @@
                     "201": {
                         "description": "Sucesso",
                         "content": {}
+                    },
+                    "404": {
+                        "description":"Produto não encontrado",
+                        "content": {}
                     }
                 }
             }
         },
 
-        "/editar/{id}": {
+        "/produtos/{id}": {
             "put": {
-                "summary": "Atualizar produto pelo Id",
                 "descrption": "Atualizar produto pelo Id",
-
+              "parameters": [{
+                  "name": "id",
+                  "in": "path",
+                  "required": true
+              }],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -94,19 +99,20 @@
                             }
                         }
                     }
+                    
                 },
                 "responses": {
                     "204": {
                         "description": "Sucesso",
-                        "content": {}
+                        "content": {
+                        }
                     }
                 }
             }
         },
 
-        "/remover/{id}": {
+        "/produtos/delete/{id}": {
             "delete": {
-                "summary": "Deletar produtos",
                 "description": "Deletar",
                 "parameters": [
                     {
