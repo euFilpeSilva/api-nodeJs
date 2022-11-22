@@ -5,13 +5,13 @@ const routes = express.Router();
 
 
 // rota pra listar os produtos
-routes.get("/produtosList", productControllers.listar);
+routes.get("/produtos", productControllers.listar);
 
 // Consultar um unico produto
-routes.get("/produtos/:id", productControllers.listarPorId);
+routes.get("/Produtos/:id", productControllers.listarPorId);
 
 // Cadastrar produtos
-routes.post("/criar", productControllers.criar);
+routes.post("/produtos", productControllers.criar);
 
 // Deletar produtos
 routes.delete("/produtos/:id", productControllers.remover);

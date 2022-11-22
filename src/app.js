@@ -1,12 +1,15 @@
 const express = require('express');
-
-const produtos = require('./routes/productRoutes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json')
 
 const app = express();
-app.use(express.json()); // req.body
- 
+const produtos = require('./routes/productRoutes');
 
+app.use(express.json());
+
+
+ 
 app.use('/produtos', produtos);
-app.use('/api-docs', produtos);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = app;
