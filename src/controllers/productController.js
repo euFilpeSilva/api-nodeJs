@@ -3,8 +3,8 @@ const Produto = require("../models/productsModel");
 
 
 const { v4: uuidv4 } = require('uuid');
+const { response } = require('../app');
 uuidv4();
-
 
 async  function listar(req,res){
     await Produto.find({})
@@ -64,6 +64,7 @@ async function remover(req,res){
     .catch (error => {return res.status(500).json (error) });
 };
 
+
 module.exports = {
     listar,
     listarPorId,
@@ -71,5 +72,3 @@ module.exports = {
     atualizar,
     remover
 }
-
-module.exports = {listar, listarPorId, criar, atualizar, remover};
