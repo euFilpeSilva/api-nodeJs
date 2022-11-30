@@ -80,13 +80,13 @@ async function userLogin(req, res) {
 
     try {
         const secret = `${process.env.SECRET}`
-        const token = jwt.sign(
+        const validator = jwt.sign(
             {
                 id: user._id
             },
             secret
         )
-            res.status(200).json({ msg: 'Autenticação realizada com sucesso!', token })
+            res.status(200).json({ msg: 'Autenticação realizada com sucesso!', validator })
     }catch(error) {
         console.log(error);
         res.status(500).json({ msg: "Aconteceu um erro no servidor, tente novamente mais tarde!" })

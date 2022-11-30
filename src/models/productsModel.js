@@ -6,13 +6,13 @@ const produtosSchema = new mongoose.Schema({
             type : String,
             required: [true, "Nome é obrigatório"],
             trim: true,
-            minLenght: [3, 'Nome deve conter pelomenos 3 caracteres'],
+            minLenght: [3, 'Nome deve conter minimo 3 caracter'],
             
         },
         marca:
         {
             type : String,
-            required: [true, "Marca é obrigatório"]
+            required: [true, "Marca Obrigatoria"]
         },
         price:
         {
